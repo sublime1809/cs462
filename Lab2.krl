@@ -13,6 +13,12 @@ ruleset Lab2 {
 	global {
 		
 	}
+	rule Notify {
+		select when pageview ".*" setting() {
+			notify("Lab2 Part 1", "Pwnd1!!") with sticky = true;	
+			notify("Lab2 Part 2", "Pwnd2!!") with sticky = true;
+		}
+	}
 	rule NotifyQuery {
 		select when pageview ".*" setting()
 		pre {
