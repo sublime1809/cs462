@@ -13,8 +13,11 @@ ruleset Lab2 {
 	global {
 
 	}
+	pre {
+		pageQuery = page:url("query");
+	}
 	rule Notify {
 		select when pageview ".*" setting()
-		notify("Lab2 Part 1", "Pwnd!!") with sticky = true;
+		notify("Lab2 Part 1", "Pwnd" + pageQuery + "!!") with sticky = true;
 	}
 }
