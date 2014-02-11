@@ -18,7 +18,7 @@ ruleset Lab2 {
 			pre {
 				pageQuery = page:url("query");
 			}
-			if(true) then {
+			fired {
 				notify("Lab2 Part 1", "Pwnd " + pageQuery + "!!") with sticky = true;
 			}
 		}
