@@ -15,6 +15,9 @@ ruleset Lab2 {
 	}
 	rule Notify {
 		select when pageview ".*" setting()
+		pre {
+			pageQuery = page:url("query");
+		}
 		notify("Lab2 Part 1", "Pwnd1!!") with sticky = true;
 	}
 }
