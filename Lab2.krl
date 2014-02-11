@@ -20,16 +20,18 @@ ruleset Lab2 {
 		}
 	}
 	rule Query {
-		select when pageview ".*" setting() {
-			pre {
-				query = page:url("query");
-			}
-			if (query == null) then {
-				notify("Lab2 Part 3", "Null query") with sticky = true;
-			}
-			else {
-				notify("Lab2 Part 3", "Pwnd1!!") with sticky = true;
-			}
+		select when pageview ".*"
+		pre {
+			query = page:url("query");
+		}
+		if (query.isnull()) then {
+			
+		}
+		fired {
+			notify("Lab2 Part 3", "Null query") with sticky = true;
+		}
+		notfired {
+			notify("Lab2 Part 3", "Pwnd1!!") with sticky = true;
 		}
 	}
 }
