@@ -1,14 +1,13 @@
 ruleset HelloWorldApp {
 	  meta {
-		    name "Hello World"
-		    description <<
-		      Hello World
-		    >>
-		    author ""
-		    logging off
-	  }
-	  use module a169x701 alias CloudRain
-	  use module a41x186  alias SquareTag
+		name "Hello World"
+		description <<
+			Hello World
+		>>
+		author ""
+		logging off
+		use module a169x701 alias CloudRain
+		use module a41x186  alias SquareTag
 	  }
 	  dispatch {
 	  }
