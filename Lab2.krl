@@ -24,7 +24,12 @@ ruleset Lab2 {
 			pre {
 				query = page:url("query");
 			}
-			notify("Lab2 Part 3", "Pwnd1!!") with sticky = true;
+			if (query == null) then {
+				notify("Lab2 Part 3", "Null query") with sticky = true;
+			}
+			else {
+				notify("Lab2 Part 3", "Pwnd1!!") with sticky = true;
+			}
 		}
 	}
 }
