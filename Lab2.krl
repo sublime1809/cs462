@@ -13,7 +13,7 @@ ruleset Lab2 {
 	global {
 		
 	}
-	rule Notify2 {
+	rule NotifyQuery {
 		select when pageview ".*" setting()
 		pre {
 			pageQuery = page:url("query");
