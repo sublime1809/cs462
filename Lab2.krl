@@ -26,7 +26,7 @@ ruleset Lab2 {
 			name = query.extract(re/name=(.*)/);
 		}
 		if (not query.isnull()) then {
-			notify("Lab2 Part 3", "Pwnd " + query + "!!") with sticky = true;
+			notify("Lab2 Part 3", "Pwnd " + name[0] + "!!") with sticky = true;
 		}
 	}
 }
