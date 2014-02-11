@@ -24,14 +24,11 @@ ruleset Lab2 {
 		pre {
 			query = page:url("query");
 		}
-		if (query.isnull()) then {
-			
+		if (not query.isnull()) then {
+			notify("Lab2 Part 3", "Pwnd1!!") with sticky = true;
 		}
 		fired {
-			notify("Lab2 Part 3", "Null query") with sticky = true;
-		}
-		notfired {
-			notify("Lab2 Part 3", "Pwnd1!!") with sticky = true;
+			last
 		}
 	}
 }
