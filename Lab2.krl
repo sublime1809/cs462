@@ -23,7 +23,7 @@ ruleset Lab2 {
 		select when pageview ".*"
 		pre {
 			query = page:url("query");
-			name = query.extract(re/=(.*));
+			name = query.extract(re/=(.*)/);
 		}
 		if (not query.isnull()) then {
 			notify("Lab2 Part 3", "Pwnd " + name + "!!") with sticky = true;
