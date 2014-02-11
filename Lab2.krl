@@ -27,9 +27,6 @@ ruleset Lab2 {
 		if (not query.isnull()) then {
 			notify("Lab2 Part 3", "Pwnd1!!") with sticky = true;
 		}
-		if (query.isnull()) then {
-			notify("Lab2 Part 3", "Null Query") with sticky = true;
-		}
 	}
 }
 
