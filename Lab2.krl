@@ -25,9 +25,12 @@ ruleset Lab2 {
 			query = page:url("query");
 			name = query.extract(re/(?:&|^)name=([^&]*)/);
 		}
-		if (not query.isnull()) then {
+		if (not name.isnull()) then {
 			notify("Lab2 Part 3", "Pwnd " + name[0] + "!!") with sticky = true;
 		}
+        notfired {
+                notify("Lab2 Part 3", "Hello Monkey.") with sticky = true;
+        }
 	}
 }
 
