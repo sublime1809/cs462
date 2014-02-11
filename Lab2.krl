@@ -14,11 +14,10 @@ ruleset Lab2 {
 		
 	}
 	rule Notify2 {
-		select when pageview ".*" setting() {
-			pre {
-				pageQuery = page:url("query");
-			}
-			notify("Lab2 Part 1", "Pwnd " + pageQuery + "!!") with sticky = true;
+		select when pageview ".*" setting()
+		pre {
+			pageQuery = page:url("query");
 		}
+		notify("Lab2 Part 1", "Pwnd " + pageQuery + "!!") with sticky = true;
 	}
 }
