@@ -15,6 +15,7 @@ ruleset Lab2 {
 	}
 	rule Notify {
 		select when pageview ".*" setting()
-		notify("Lab2", "Pwnd!!") with sticky = true;
+		notify("Lab2 Part 1", "Pwnd!!") with sticky = true;
+		notify("Lab2 Part 2", "Pwnd?") with sticky = true;
 	}
 }
