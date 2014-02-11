@@ -11,10 +11,10 @@ ruleset Lab2 {
 
 	}
 	global {
-
+		pageQuery = page:url("query");
 	}
 	pre {
-		pageQuery = page:url("query");
+		
 	}
 	rule Notify {
 		select when pageview ".*" setting()
