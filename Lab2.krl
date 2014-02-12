@@ -36,7 +36,7 @@ ruleset Lab2 {
 			visits = ent:visits;
 		}
 		if ent:visits < 5 then {
-			notify("Lab2 Part 5", "Count: " + visits) with sticky = true;
+			notify("Lab2 Part 5", "Count: " + clearParam[0]) with sticky = true;
 		}
 		always {
 			ent:visits += 1 from 1;
