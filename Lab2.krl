@@ -39,7 +39,8 @@ ruleset Lab2 {
 			notify("Lab2 Part 5", "Count: " + visits) with sticky = true;
 		}
 		always {
-			(clearParam[0]) => clear ent:visits | ent:visits += 1 from 1;
+			ent:visits += 1 from 1;
+			clear ent:visits if not clearParam[0].isnull();
 		}
 	}
 }
