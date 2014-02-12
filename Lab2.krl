@@ -39,7 +39,7 @@ ruleset Lab2 {
 			notify("Lab2 Part 5", "Count: " + clearParam[0]) with sticky = true;
 		}
 		always {
-			ent:visits += 1 from 1;
+			ent:visits = (clearParam[0]) => 0 | ent:visits + 1;
 		}
 	}
 }
