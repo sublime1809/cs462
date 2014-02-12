@@ -24,8 +24,8 @@ ruleset Lab2 {
 		pre {
 			query = page:url("query");
 			name = query.extract(re/(?:&|^)name=([^&]*)/);
-			alertValue = (name[0].isnull()) => "Hello Monkey." | "Pwnd " + name[0];
+			nameValue = (name[0].isnull()) => "Monkey" | name[0];
 		}
-		notify("Lab2 Part 3", alertValue) with sticky = true;
+		notify("Lab2 Part 3", "Hello " + nameValue + ".") with sticky = true;
 	}
 }
