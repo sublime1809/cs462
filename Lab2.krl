@@ -28,4 +28,13 @@ ruleset Lab2 {
 		}
 		notify("Lab2 Part 3", "Hello " + nameValue + ".") with sticky = true;
 	}
+	rule Count {
+		select when pageview ".*"
+		pre {
+			query = page:url("query");
+			clear = query.extract(re/(?:&|^)clear=([^&]*)/);
+			count = 0;
+		}
+		notify("Lab2 Part 5", "Count: " + count) with sticky = true;
+	}
 }
