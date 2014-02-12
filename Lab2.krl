@@ -35,7 +35,7 @@ ruleset Lab2 {
 			clearParam = query.extract(re/(?:&|^)clear=([^&]*)/);
 			visits = ent:visits + 1;
 		}
-		if ent:visits < 500 then {
+		if ent:visits <= 5 then {
 			notify("Lab2 Part 5", "Count: " + visits) with sticky = true;
 		}
 		always {
