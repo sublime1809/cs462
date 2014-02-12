@@ -20,19 +20,14 @@ ruleset Lab2 {
 		}
 	}
 	rule Query {
-		select when pageview ".*" {
-			pre {
-				query = page:url("query");
-				name = query.extract(re/(?:&|^)name=([^&]*)/);
-			}
-			if (not name.isnull()) then {
+		select when pageview ".*"
+		pre {
+			query = page:url("query");
+			name = query.extract(re/(?:&|^)name=([^&]*)/);
+		}
+		if (name[0]) then {
+			name[0].isnull() => notify("Lab2 Part 3", "Hello Monkey.") |
 				notify("Lab2 Part 3", "Pwnd " + name[0] + "!!") with sticky = true;
-			}
-	        notfired {
-	            notify("Lab2 Part 3", "Hello Monkey.") with sticky = true;
-	        }
-        }
+		}
 	}
 }
-
-
