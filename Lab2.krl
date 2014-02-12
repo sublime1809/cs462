@@ -32,9 +32,14 @@ ruleset Lab2 {
 		select when pageview ".*"
 		pre {
 			query = page:url("query");
-			clear = query.extract(re/(?:&|^)clear=([^&]*)/);
-			count = 0;
+			clearParam = query.extract(re/(?:&|^)clear=([^&]*)/);
+			visits = ent:visits;
 		}
-		notify("Lab2 Part 5", "Count: " + count) with sticky = true;
+		if ent:visits < 5 then {
+			notify("Lab2 Part 5", "Count: " + visits) with sticky = true;
+		}
+		always {
+			ent:visits += 1 from 1;
+		}
 	}
 }
