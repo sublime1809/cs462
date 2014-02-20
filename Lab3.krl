@@ -17,27 +17,28 @@ ruleset Lab3 {
 		select when pageview ".*"
 		pre {
 			name_form = <<
-				<div id="value">
-					<label for="firstname">First name:</label>
-					<input id="firstname" type="text" />
-					<label for="lastname">Last name:</label>
-					<input id="lastname" type="text" />
+				<div id="name_form">
+					<label for="first_name">First name:</label>
+					<input id="first_name" type="text" />
+					<label for="last_name">Last name:</label>
+					<input id="last_name" type="text" />
 					<input id="name_submit" value="Submit" type="submit" />
 				</div>
 			>>;
 		}
-		if ent:firstname.isnull() {
+		{
 			replace_html("#main", name_form);
-			watch("#name_submit", "click");
+			watch("#name_form", "submit");
 		}
 	}
-
 	rule submit_rule {
-		select when web click "#name_submit"
+		select when web submit "#name_form"
 		pre {
-			firstname = event:attr("firstname");
-			lastname = event:attr("lastname");
+			first_name = event:attr("first_name");
+			last_name = event:attr("last_name");
 		}
-		notify("Welcome", "Hello #{firstname} #{lastname}") with sticky = true;
+		{
+			notify("Welcome", "Hello #{first_name} #{last_name}") with sticky = true;
+		}
 	}
 }
