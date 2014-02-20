@@ -11,7 +11,7 @@ ruleset Lab4 {
 			movie_audience_rating = movie_data.pick("$.content.movies[0].ratings.audience_score");
 		}
 		{
-			notify("Getting Here", "With #{movie_title} #{movie_critic_rating} #{movie_audience_rating}");
+			notify("Getting Here", "With #{movie_data}");
 		}
 	}
 }
