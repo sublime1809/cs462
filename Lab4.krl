@@ -9,9 +9,12 @@ ruleset Lab4 {
 				"apikey": api_key,
 				"q": "Toy+Story"
 			}).pick("$.content");
+			movie_title = url_content.pick("$.movies[0].title");
+			movie_critic_rating = url_content.pick("$.movies[0].ratings.critics_score");
+			movie_audience_rating = url_content.pick("$.movies[0].ratings.audience_score");
 		}
 		{
-			notify("Getting Here", "With #{url_content}");
+			notify("Getting Here", "With #{movie_title} #{movie_critic_rating} #{movie_audience_rating}");
 		}
 	}
 }
