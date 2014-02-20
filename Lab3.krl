@@ -27,8 +27,9 @@ ruleset Lab3 {
 			>>;
 		}
 		replace_html("#main", name_form);
-		watch("#name_submit", "click");
+		watch('#name_submit', 'click');
 	}
+
 	rule submit_rule {
 		select when web click "#name_submit"
 		notify("Click Event", 'Clicked!') with sticky = true;
