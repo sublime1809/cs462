@@ -4,7 +4,7 @@ ruleset Lab4 {
 			http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {
 				"apikey" : "xvtq9xmq5fzaq2f9qrk26g6c",
 				"q" : title
-			});
+			}).decode();
 		};
 	}
 	rule get_movie {
