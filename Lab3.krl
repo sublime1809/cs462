@@ -29,12 +29,15 @@ ruleset Lab3 {
 		if ent:firstname.isnull() {
 			replace_html("#main", name_form);
 			watch("#name_submit", "click");
-			notify("Last name", document.query('#lastname').value);
 		}
 	}
 
 	rule submit_rule {
 		select when web click "#name_submit"
-		notify("You clicked", 'Watch');
+		pre {
+			firstname = event:attr("firstname");
+			lastname = event:attr("lastname");
+		}
+		notify("Welcome", "Hello #{firstname} #{lastname}") with sticky = true;
 	}
 }
