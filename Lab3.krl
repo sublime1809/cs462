@@ -16,8 +16,8 @@ ruleset Lab3 {
 	rule show_form {
 		select when pageview ".*"
 		pre {
-			form = <<
-				<div>
+			name_form = <<
+				<div id="value">
 					<label for="firstname">First name:</label>
 					<input id="firstname" type="text" />
 					<label for="lastname">Last name:</label>
@@ -26,6 +26,6 @@ ruleset Lab3 {
 				</div>
 			>>;
 		}
-		replace_html("#main", form);
+		replace_html("#main", name_form);
 	}
 }
