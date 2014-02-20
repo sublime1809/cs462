@@ -16,29 +16,32 @@ ruleset Lab3 {
 	rule show_form {
 		select when pageview ".*"
 		pre {
-			name_form = <<
-				<div id="name_form">
+			name_form_html = <<
+				<form id="name_form" onsubmit="return false">
 					<label for="first_name">First name:</label>
 					<input id="first_name" type="text" />
 					<label for="last_name">Last name:</label>
 					<input id="last_name" type="text" />
-					<input id="name_submit" value="Submit" type="submit" />
-				</div>
+					<input value="Submit" type="submit" />
+				</form>
 			>>;
 		}
 		{
-			replace_html("#main", name_form);
+			replace_html("#main", name_form_html);
 			watch("#name_form", "submit");
 		}
 	}
-	rule submit_rule {
+	rule catch_submit {
 		select when web submit "#name_form"
 		pre {
-			first_name = event:attr("first_name") || "Default";
-			last_name = event:attr("last_name") || "Monkey";
+			first_name = event:attr("first_name");
+			last_name = event:attr("last_name");
 		}
+		notify("Button Clicked", "HI #{first_name} #{last_name}") with sticky = true;
+		fired 
 		{
-			notify("Welcome", "Hello #{first_name} #{last_name}") with sticky = true;
+			set ent:first_name event:attr("first_name");
+			set ent:last_name event:attr("last_name");
 		}
 	}
 }
