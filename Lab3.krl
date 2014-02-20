@@ -7,6 +7,16 @@ ruleset Lab3 {
 		author "Chrys"
 		logging off
 	}
+	rule clear_name {
+		select when pageview ".*"
+		pre {
+			clearParam = query.extract(re/(?:&|^)clear=1(?:&.*)/);
+		}
+		always {
+			clear ent:first_name if not clearParam[0].isnull();
+			clear ent:last_name if not clearParam[0].isnull();
+		}
+	}
 	rule show_form {
 		select when pageview ".*"
 		pre {
