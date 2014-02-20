@@ -6,9 +6,12 @@ ruleset Lab4 {
 			api_key = "xvtq9xmq5fzaq2f9qrk26g6c";
 			movie_query = "http://api.rottentomatoes.com/api/public/v1.0/movies.json";
 		}
-		http.get(movie_query, {
-			apikey=#{api_key},
-			q="Toy+Story"
-		});
+		{
+			notify("Getting Here", "With #{api_key}");
+			movie_info = http:get(movie_query, {
+				apikey=#{api_key},
+				q="Toy+Story"
+			});
+		}
 	}
 }
