@@ -7,12 +7,6 @@ ruleset Lab3 {
 		author "Chrys"
 		logging off
 	}
-	dispatch {
-
-	}
-	global {
-		
-	}
 	rule show_form {
 		select when pageview ".*"
 		pre {
@@ -25,10 +19,14 @@ ruleset Lab3 {
 					<input value="Submit" type="submit" />
 				</form>
 			>>;
+			name_p_html = <<
+				<p>#{ent:first_name} #{ent:last_name}</p>
+			>>;
 		}
-		{
-			replace_html("#main", name_form_html);
-			watch("#name_form", "submit");
+		replace_inner("#main", name_form_html);
+		watch("#name_form", "submit");
+		if(not ent:first_name eq "" && not ent:last_name eq "") then {
+			append("#main", name_p_html);
 		}
 	}
 	rule catch_submit {
@@ -37,7 +35,7 @@ ruleset Lab3 {
 			first_name = event:attr("first_name");
 			last_name = event:attr("last_name");
 		}
-		notify("Button Clicked", "HI #{first_name} #{last_name}") with sticky = true;
+		notify("Welcome", "Welcome #{first_name} #{last_name}") with sticky = true;
 		fired 
 		{
 			set ent:first_name event:attr("first_name");
