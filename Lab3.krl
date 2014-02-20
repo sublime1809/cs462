@@ -22,10 +22,15 @@ ruleset Lab3 {
 					<input id="firstname" type="text" />
 					<label for="lastname">Last name:</label>
 					<input id="lastname" type="text" />
-					<input value="Submit" type="submit" />
+					<input id="name_submit" value="Submit" type="submit" />
 				</div>
 			>>;
 		}
 		replace_html("#main", name_form);
+		watch("#name_submit", "click");
+	}
+	rule submit_rule {
+		select when web click "#name_submit"
+		notify("Click Event", 'Clicked!') with sticky = true;
 	}
 }
