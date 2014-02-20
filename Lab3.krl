@@ -50,7 +50,7 @@ ruleset Lab3 {
 		}
 	}
 	rule display_name {
-		select when pageview ".*" || web submit "#name_form"
+		select when pageview ".*"
 		pre {
 			name_p_html = <<
 				<p>#{ent:first_name} #{ent:last_name}</p>
