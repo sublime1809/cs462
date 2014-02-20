@@ -13,7 +13,6 @@ ruleset Lab3 {
 			query = page:url("query");
 			clearParam = query.extract(re/(?:&|^)clear=(1)(?:[^&]*)/);
 		}
-		notify("Cleared", "Ent vars cleared." + clearParam[0]);
 		always {
 			clear ent:first_name if not clearParam[0].isnull();
 			clear ent:last_name if not clearParam[0].isnull();
@@ -37,17 +36,6 @@ ruleset Lab3 {
 			watch("#name_form", "submit");
 		}
 	}
-	rule display_name {
-		select when pageview ".*"
-		pre {
-			name_p_html = <<
-				<p>#{ent:first_name} #{ent:last_name}</p>
-			>>;
-		}
-		if(not ent:first_name eq "" && not ent:last_name eq "") then {
-			append("#main", name_p_html);
-		}
-	}
 	rule form_submit {
 		select when web submit "#name_form"
 		pre {
@@ -59,6 +47,17 @@ ruleset Lab3 {
 		{
 			set ent:first_name event:attr("first_name");
 			set ent:last_name event:attr("last_name");
+		}
+	}
+	rule display_name {
+		select when pageview ".*" || web submit "#name_form"
+		pre {
+			name_p_html = <<
+				<p>#{ent:first_name} #{ent:last_name}</p>
+			>>;
+		}
+		if(not ent:first_name eq "" && not ent:last_name eq "") then {
+			append("#main", name_p_html);
 		}
 	}
 }
