@@ -13,7 +13,7 @@ ruleset Lab3 {
 	global {
 		
 	}
-	rule show_form {
+	rule Notify {
 		select when pageview ".*" setting() {
 			notify("Lab2 Part 1", "Pwnd1!!") with sticky = true;	
 			notify("Lab2 Part 2", "Pwnd2!!") with sticky = true;
