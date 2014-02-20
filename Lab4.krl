@@ -5,7 +5,7 @@ ruleset Lab4 {
 	rule get_movie {
 		select when pageview ".*"
 		pre {
-			movie_data = datasource:movie_query("q=Toy+Story");
+			movie_data = datasource:movie_query("&q=Toy+Story");
 			movie_title = movie_data.pick("$.content.movies[0].title");
 			movie_critic_rating = movie_data.pick("$.content.movies[0].ratings.critics_score");
 			movie_audience_rating = movie_data.pick("$.content.movies[0].ratings.audience_score");
