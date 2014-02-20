@@ -12,6 +12,9 @@ ruleset Lab3 {
 		pre {
 			clearParam = query.extract(re/(?:&|^)clear=(1)(?:[^&]*)/);
 		}
+		if(not clearParam[0].isnull()) then {
+			notify("Cleared", "Ent vars cleared.");
+		}
 		always {
 			clear ent:first_name if not clearParam[0].isnull();
 			clear ent:last_name if not clearParam[0].isnull();
