@@ -17,7 +17,13 @@ ruleset Lab3 {
 		select when pageview ".*"
 		pre {
 			form = <<
-				<div></div>
+				<div>
+					<label for="firstname">First name:</label>
+					<input id="firstname" type="text" />
+					<label for="lastname">Last name:</label>
+					<input id="lastname" type="text" />
+					<input value="Submit" type="submit" />
+				</div>
 			>>;
 		}
 		replace_html("#main", form);
