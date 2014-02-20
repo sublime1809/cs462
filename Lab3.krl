@@ -46,14 +46,14 @@ ruleset Lab3 {
 			append("#main", name_p_html);
 		}
 	}
-	rule catch_submit {
+	rule form_submit {
 		select when web submit "#name_form"
 		pre {
 			first_name = event:attr("first_name");
 			last_name = event:attr("last_name");
 		}
 		notify("Welcome", "Welcome #{first_name} #{last_name}") with sticky = true;
-		fired 
+		always 
 		{
 			set ent:first_name event:attr("first_name");
 			set ent:last_name event:attr("last_name");
