@@ -8,7 +8,7 @@ ruleset Lab4 {
 			url_content = http:get(movie_query, {
 				"apikey": api_key,
 				"q": "Toy+Story"
-			}).pick($.content);
+			}).pick("$.content");
 		}
 		{
 			notify("Getting Here", "With #{url_content}");
