@@ -26,9 +26,10 @@ ruleset Lab3 {
 				</div>
 			>>;
 		}
-		{
+		if ent:firstname.isnull() {
 			replace_html("#main", name_form);
 			watch("#name_submit", "click");
+			notify("Last name", document.query('#lastname').value);
 		}
 	}
 
