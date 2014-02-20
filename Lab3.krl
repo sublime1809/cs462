@@ -19,9 +19,9 @@ ruleset Lab3 {
 			name_form_html = <<
 				<form id="name_form" onsubmit="return false">
 					<label for="first_name">First name:</label>
-					<input id="first_name" type="text" />
+					<input name="first_name" type="text" />
 					<label for="last_name">Last name:</label>
-					<input id="last_name" type="text" />
+					<input name="last_name" type="text" />
 					<input value="Submit" type="submit" />
 				</form>
 			>>;
