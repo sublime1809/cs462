@@ -34,8 +34,8 @@ ruleset Lab3 {
 	rule submit_rule {
 		select when web submit "#name_form"
 		pre {
-			first_name = event:attr("first_name");
-			last_name = event:attr("last_name");
+			first_name = event:attr("first_name") || "Default";
+			last_name = event:attr("last_name") || "Monkey";
 		}
 		{
 			notify("Welcome", "Hello #{first_name} #{last_name}") with sticky = true;
