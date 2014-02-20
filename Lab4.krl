@@ -11,8 +11,7 @@ ruleset Lab4 {
 			}).pick($.content);
 		}
 		{
-			notify("Getting Here", "With #{api_key}");
-			replace_inner("#main", urlcontent);
+			notify("Getting Here", "With #{url_content}");
 		}
 	}
 }
