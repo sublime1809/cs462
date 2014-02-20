@@ -1,7 +1,6 @@
 ruleset Lab4 {
 	global {
-		api_key = "xvtq9xmq5fzaq2f9qrk26g6c";
-		datasource movie_query <- "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey="+api_key;
+		datasource movie_query <- "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=xvtq9xmq5fzaq2f9qrk26g6c";
 	}
 	rule get_movie {
 		select when pageview ".*"
