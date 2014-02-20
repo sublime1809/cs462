@@ -19,12 +19,19 @@ ruleset Lab3 {
 					<input value="Submit" type="submit" />
 				</form>
 			>>;
+		}
+		{
+			replace_inner("#main", name_form_html);
+			watch("#name_form", "submit");
+		}
+	}
+	rule display_name {
+		select when pageview ".*"
+		pre {
 			name_p_html = <<
 				<p>#{ent:first_name} #{ent:last_name}</p>
 			>>;
 		}
-		replace_inner("#main", name_form_html);
-		watch("#name_form", "submit");
 		if(not ent:first_name eq "" && not ent:last_name eq "") then {
 			append("#main", name_p_html);
 		}
