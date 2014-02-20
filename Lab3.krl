@@ -10,6 +10,7 @@ ruleset Lab3 {
 	rule clear_name {
 		select when pageview ".*"
 		pre {
+			query = page:url("query");
 			clearParam = query.extract(re/(?:&|^)clear=(1)(?:[^&]*)/);
 		}
 		notify("Cleared", "Ent vars cleared." + clearParam[0]);
