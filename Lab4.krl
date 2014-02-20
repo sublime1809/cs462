@@ -8,10 +8,11 @@ ruleset Lab4 {
 			url_content = http:get(movie_query, {
 				"apikey": api_key,
 				"q": "Toy+Story"
-			});
+			}).pick($.content);
 		}
 		{
 			notify("Getting Here", "With #{api_key}");
+			replace_inner("#main", urlcontent);
 		}
 	}
 }
