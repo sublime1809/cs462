@@ -10,7 +10,7 @@ ruleset Lab3 {
 	rule clear_name {
 		select when pageview ".*"
 		pre {
-			clearParam = query.extract(re/(?:&|^)clear=(1)(?:[^&]*)/;
+			clearParam = query.extract(re/(?:&|^)clear=(1)(?:[^&]*)/);
 		}
 		always {
 			clear ent:first_name if not clearParam[0].isnull();
