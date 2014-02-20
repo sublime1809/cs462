@@ -8,10 +8,6 @@ ruleset Lab4 {
 		}
 		{
 			notify("Getting Here", "With #{api_key}");
-			movie_info = http:get(movie_query, {
-				apikey=#{api_key},
-				q="Toy+Story"
-			});
 		}
 	}
 }
