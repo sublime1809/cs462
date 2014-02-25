@@ -35,7 +35,8 @@ ruleset Lab4 {
 	rule get_movie {
 		select when web submit "#movie_form"
 		pre {
-			movie_data = get_movie("Toy+Story");
+			search_title = event:attr("movie");
+			movie_data = get_movie(search_title);
 			movie_title = movie_data.pick("$.title").as("str");
 			movie_critic_rating = movie_data.pick("$.ratings.critics_score").as("str");
 			movie_audience_rating = movie_data.pick("$.ratings.audience_score").as("str");
