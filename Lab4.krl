@@ -1,4 +1,8 @@
 ruleset Lab4 {
+	meta {
+		use module a169x701 alias CloudRain
+		use module a41x186  alias SquareTag
+	}
 	global {
 		get_movie = function(title) {
 			data = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {
@@ -10,17 +14,20 @@ ruleset Lab4 {
 			movie
 		};
 	}
-	rule get_movie {
-		select when pageview ".*"
+	rule display_movie_form {
+		select when web cloudAppSelected
 		pre {
-			movie_data = get_movie("Toy+Story");
-			movie_str = movie_data.as("str");
-			movie_title = movie_data.pick("$.title").as("str");
-			movie_critic_rating = movie_data.pick("$.ratings.critics_score").as("str");
-			movie_audience_rating = movie_data.pick("$.ratings.audience_score").as("str");
-		}
+		    my_form = <<
+		    	<form>
+		    		<label for="movie">Movie: </label>
+		    		<input name="movie" type="text" />
+		    		<input type="submit" value="Search" />
+		    	</form>
+		    >>;
+		  }
 		{
-			notify("Getting Here", "With #{movie_str}") with sticky = true;
+			SquareTag:injectStyling();
+			CloudRain:createLoadPanel("Movie Search!", {}, my_form);
 		}
 	}
 }
