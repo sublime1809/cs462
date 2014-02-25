@@ -49,9 +49,12 @@ ruleset Lab4 {
 					<li>Audience Rating: #{movie_audience_rating}</li>
 				</ul>
 			>>;
+			error_msg = <<
+				Could not find "#{search_title}".
+			>>;
 		}
 		{
-			replace_inner("#movie_info", movie_info);
+			movie_title.isnull() => replace_inner("#movie_info", movie_info) | replace_inner("#movie_info", error_msg);
 		}
 	}
 }
