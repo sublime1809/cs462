@@ -41,7 +41,11 @@ ruleset Lab4 {
 			movie_critic_rating = movie_data.pick("$.ratings.critics_score").as("str");
 			movie_audience_rating = movie_data.pick("$.ratings.audience_score").as("str");
 			movie_info = <<
-				<div>Movie Info!</div>
+				<ul>
+					<li>Title: #{movie_title}</li>
+					<li>Critic Rating: #{movie_critic_rating}</li>
+					<li>Audience Rating: #{movie_audience_rating}</li>
+				</ul>
 			>>;
 		}
 		{
