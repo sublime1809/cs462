@@ -23,6 +23,7 @@ ruleset Lab4 {
 		    		<input name="movie" type="text" />
 		    		<input type="submit" value="Search" />
 		    	</form>
+		    	<div id="movie_info"></div>
 		    >>;
 		  }
 		{
@@ -43,7 +44,7 @@ ruleset Lab4 {
 			>>;
 		}
 		{
-			CloudRain:createLoadPanel("Results", {}, movie_info);
+			replace_inner("#movie_info", movie_info);
 		}
 	}
 }
