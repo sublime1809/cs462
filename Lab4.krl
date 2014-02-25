@@ -50,7 +50,7 @@ ruleset Lab4 {
 				</ul>
 			>>;
 		}
-		if not movie_title.eq("") then {
+		if (movie_title.length > 0) then {
 			replace_inner("#movie_info", movie_info);
 		}
 		notfired {
