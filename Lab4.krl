@@ -33,7 +33,7 @@ ruleset Lab4 {
 		}
 	}
 	rule get_movie {
-		select when web submit "#name_form"
+		select when web submit "#movie_form"
 		pre {
 			movie_data = get_movie("Toy+Story");
 			movie_title = movie_data.pick("$.title").as("str");
