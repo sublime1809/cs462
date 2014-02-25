@@ -18,7 +18,7 @@ ruleset Lab4 {
 		select when web cloudAppSelected
 		pre {
 		    my_form = <<
-		    	<form>
+		    	<form id="movie_form" onsubmit="return false">
 		    		<label for="movie">Movie: </label>
 		    		<input name="movie" type="text" />
 		    		<input type="submit" value="Search" />
@@ -28,6 +28,22 @@ ruleset Lab4 {
 		{
 			SquareTag:injectStyling();
 			CloudRain:createLoadPanel("Movie Search!", {}, my_form);
+			watch("#movie_form", "submit");
+		}
+	}
+	rule get_movie {
+		select when web submit "#name_form"
+		pre {
+			movie_data = get_movie("Toy+Story");
+			movie_title = movie_data.pick("$.title").as("str");
+			movie_critic_rating = movie_data.pick("$.ratings.critics_score").as("str");
+			movie_audience_rating = movie_data.pick("$.ratings.audience_score").as("str");
+			movie_info = <<
+				<div>Movie Info!</div>
+			>>;
+		}
+		{
+			CloudRain:createLoadPanel("Results", {}, movie_info);
 		}
 	}
 }
