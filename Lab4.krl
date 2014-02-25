@@ -50,8 +50,22 @@ ruleset Lab4 {
 				</ul>
 			>>;
 		}
-		{
+		if not movie_data.isnull() then {
 			replace_inner("#movie_info", movie_info);
+		}
+		notfired {
+			raise explicit event display_error;
+		}
+	}
+	rule display_search_error {
+		select when explicity display_error
+		pre {
+			error_msg = <<
+				Could not find movie.
+			>>;
+		}
+		{
+			replace_inner("#movie_info", error_msg);
 		}
 	}
 }
