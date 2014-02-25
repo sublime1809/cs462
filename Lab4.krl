@@ -38,11 +38,13 @@ ruleset Lab4 {
 			search_title = event:attr("movie");
 			movie_data = get_movie(search_title);
 			movie_title = movie_data.pick("$.title").as("str");
+			movie_year = movie_data.pick("$.year").as("str");
 			movie_critic_rating = movie_data.pick("$.ratings.critics_score").as("str");
 			movie_audience_rating = movie_data.pick("$.ratings.audience_score").as("str");
 			movie_info = <<
 				<ul>
 					<li>Title: #{movie_title}</li>
+					<li>Year: #{movie_year}</li>
 					<li>Critic Rating: #{movie_critic_rating}</li>
 					<li>Audience Rating: #{movie_audience_rating}</li>
 				</ul>
