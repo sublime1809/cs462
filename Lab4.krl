@@ -54,7 +54,7 @@ ruleset Lab4 {
 			>>;
 		}
 		{
-			movie_title.isnull() => replace_inner("#movie_info", movie_info) | replace_inner("#movie_info", error_msg);
+			(movie_title.isnull()) => replace_inner("#movie_info", movie_info) | replace_inner("#movie_info", error_msg);
 		}
 	}
 }
