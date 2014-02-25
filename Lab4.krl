@@ -50,7 +50,7 @@ ruleset Lab4 {
 				</ul>
 			>>;
 		}
-		if not movie_data.isnull() then {
+		if not movie_title.isnull() then {
 			replace_inner("#movie_info", movie_info);
 		}
 		notfired {
