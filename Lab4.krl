@@ -23,7 +23,7 @@ ruleset Lab4 {
 		    		<input name="movie" type="text" />
 		    		<input type="submit" value="Search" />
 		    	</form>
-		    	<div id="movie_info"></div>
+		    	<div id="movie_info">Search to get details.</div>
 		    >>;
 		  }
 		{
