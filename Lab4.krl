@@ -41,20 +41,19 @@ ruleset Lab4 {
 			movie_year = movie_data.pick("$.year").as("str");
 			movie_critic_rating = movie_data.pick("$.ratings.critics_score").as("str");
 			movie_audience_rating = movie_data.pick("$.ratings.audience_score").as("str");
-			movie_info = <<
+			movie_info = (movie_data.isnull()) => <<
 				<ul>
 					<li>Title: #{movie_title}</li>
 					<li>Year: #{movie_year}</li>
 					<li>Critic Rating: #{movie_critic_rating}</li>
 					<li>Audience Rating: #{movie_audience_rating}</li>
 				</ul>
-			>>;
-			error_msg = <<
+			>> | <<
 				Could not find "#{search_title}".
 			>>;
 		}
 		{
-			(movie_title.isnull()) => replace_inner("#movie_info", movie_info) | replace_inner("#movie_info", error_msg);
+			replace_inner("#movie_info", movie_info);
 		}
 	}
 }
