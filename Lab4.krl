@@ -58,7 +58,7 @@ ruleset Lab4 {
 		}
 	}
 	rule display_search_error {
-		select when explicity display_error
+		select when explicit display_error
 		pre {
 			error_msg = <<
 				Could not find movie.
