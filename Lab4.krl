@@ -38,7 +38,7 @@ ruleset Lab4 {
 		pre {
 			search_title = event:attr("movie");
 			ret_value = get_movie(search_title);
-			count = ret_value[0].as("int");
+			count = ret_value[0].as("str");
 			movie_data = ret_value[1];
 			movie_title = movie_data.pick("$.title").as("str");
 			movie_year = movie_data.pick("$.year").as("str");
