@@ -54,7 +54,7 @@ ruleset Lab4 {
 				</ul>
 			>>;
 		}
-		{
+		if (count > 0) then {
 			replace_inner("#movie_info", movie_info);
 		}
 		notfired {
