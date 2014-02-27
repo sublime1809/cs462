@@ -58,7 +58,7 @@ ruleset Lab4 {
 			replace_inner("#movie_info", movie_info);
 		}
 		notfired {
-			raise explicit event display_error with movie_title = #{movie_title};
+			raise explicit event display_error with movie_title = search_title;
 		}
 	}
 	rule display_search_error {
