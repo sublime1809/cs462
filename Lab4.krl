@@ -44,12 +44,16 @@ ruleset Lab4 {
 			movie_year = movie_data.pick("$.year").as("str");
 			movie_critic_rating = movie_data.pick("$.ratings.critics_score").as("str");
 			movie_audience_rating = movie_data.pick("$.ratings.audience_score").as("str");
+			movie_thumb_url = movie_data.pick("$.posters.thumbnail").as("str");
+			movie_synopsis = movie_data.pick("$.synopsis").as("str");
 			movie_info = <<
 				<ul>
+					<li><img src="#{movie_thumb_url}" /></li>
 					<li>Title: #{movie_title}</li>
 					<li>Year: #{movie_year}</li>
 					<li>Critic Rating: #{movie_critic_rating}</li>
 					<li>Audience Rating: #{movie_audience_rating}</li>
+					<li>Synopsis: #{movie_synopsis}</li>
 				</ul>
 			>>;
 		}
