@@ -58,14 +58,15 @@ ruleset Lab4 {
 			replace_inner("#movie_info", movie_info);
 		}
 		notfired {
-			raise explicit event display_error;
+			raise explicit event display_error with movie_title = movie_title;
 		}
 	}
 	rule display_search_error {
 		select when explicit display_error
 		pre {
+			movie_title = event:attr("movie_title");
 			error_msg = <<
-				Could not find movie.
+				Could not find movie with title #{movie_title}.
 			>>;
 		}
 		{
