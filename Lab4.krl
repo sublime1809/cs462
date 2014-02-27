@@ -10,7 +10,7 @@ ruleset Lab4 {
 				"q" : title
 			});
 			content = data.pick("$.content").decode();
-			count = content.pick("$.count");
+			count = content.pick("$.total");
 			movie = content.pick("$.movies[0]");
 			[count, movie]
 		};
@@ -38,7 +38,7 @@ ruleset Lab4 {
 		pre {
 			search_title = event:attr("movie");
 			ret_value = get_movie(search_title);
-			count = ret_value[0].as("str");
+			count = ret_value[0].as("int");
 			movie_data = ret_value[1];
 			movie_title = movie_data.pick("$.title").as("str");
 			movie_year = movie_data.pick("$.year").as("str");
@@ -54,7 +54,7 @@ ruleset Lab4 {
 				</ul>
 			>>;
 		}
-		{
+		if count > 0 {
 			replace_inner("#movie_info", movie_info);
 		}
 		notfired {
