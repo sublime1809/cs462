@@ -10,8 +10,9 @@ ruleset Lab4 {
 				"q" : title
 			});
 			content = data.pick("$.content").decode();
+			count = content.pick("$.count");
 			movie = content.pick("$.movies[0]");
-			movie
+			[count, movie]
 		};
 	}
 	rule display_movie_form {
@@ -36,7 +37,9 @@ ruleset Lab4 {
 		select when web submit "#movie_form"
 		pre {
 			search_title = event:attr("movie");
-			movie_data = get_movie(search_title);
+			ret_value = get_movie(search_title);
+			count = ret_value[0];
+			movie_data = ret_value[1];
 			movie_title = movie_data.pick("$.title").as("str");
 			movie_year = movie_data.pick("$.year").as("str");
 			movie_critic_rating = movie_data.pick("$.ratings.critics_score").as("str");
@@ -50,7 +53,7 @@ ruleset Lab4 {
 				</ul>
 			>>;
 		}
-		if movie_data then {
+		if count > 0 then {
 			replace_inner("#movie_info", movie_info);
 		}
 		notfired {
