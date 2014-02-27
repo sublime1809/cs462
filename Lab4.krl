@@ -66,7 +66,7 @@ ruleset Lab4 {
 		pre {
 			movie_title = event:attr("movie_title");
 			error_msg = <<
-				Could not find movie with title #{movie_title}.
+				Could not find movie with title "#{movie_title}".
 			>>;
 		}
 		{
