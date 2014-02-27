@@ -46,7 +46,6 @@ ruleset Lab4 {
 			movie_audience_rating = movie_data.pick("$.ratings.audience_score").as("str");
 			movie_info = <<
 				<ul>
-					<li>Count: #{count}</li>
 					<li>Title: #{movie_title}</li>
 					<li>Year: #{movie_year}</li>
 					<li>Critic Rating: #{movie_critic_rating}</li>
