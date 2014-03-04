@@ -24,8 +24,13 @@ ruleset foursquare {
 		select when foursquare checkin
 		pre {
 			fs_venue = event:attr("venue");
+			checkin_html = <<
+				Checking in! #{fs_venue}
+			>>;
 		}
-		if not fs_venue.isnull() then noop();
+		{
+			replace_inner("#checkins", checkin_html);
+		}
 		fired {
 			raise explicit event show_checkin with fs_venue = fs_venue;
 		}
