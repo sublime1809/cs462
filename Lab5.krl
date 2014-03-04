@@ -7,7 +7,7 @@ ruleset foursquare {
 
 	}
 	rule startup {
-		select when explicit show_checkin
+		select when web cloudAppSelected
 		pre {
 			fs_venue = event:attr("fs_venue");
 			checkin_html = <<
