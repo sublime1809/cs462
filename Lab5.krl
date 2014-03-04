@@ -5,7 +5,7 @@ ruleset foursquare {
 
 		}
 		always {
-			ent:venue = event:attr("")
+			set ent:venue event:attr("");
 		}
 	} 
 	rule display_checkin {
