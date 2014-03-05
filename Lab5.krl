@@ -24,15 +24,16 @@ ruleset b505258x4 {
 	rule process_fs_checkin is active {
 		select when foursquare checkin
 		pre {
+			fs_checkin = event:attr("venue");
 			checkin_html = <<
-				Checking in!
+				Checking in! #{fs_checkin}
 			>>;
 		}
 		{
 			replace_inner("#checkins", checkin_html);
 		}
 		always {
-			set ent:visited "done!";
+			set ent:visited fs_checkin;
 		}
 	} 
 	rule display_checkin {
