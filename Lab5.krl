@@ -24,22 +24,22 @@ ruleset b505258x4 {
 	rule process_fs_checkin is active {
 		select when foursquare checkin
 		pre {
-			fs_checkin = event:attr("response");
-			checkin_html = <<
-				Checking in! #{fs_checkin}
-			>>;
+			fs_checkin = event:attr("checkin").decode();
+			fs_venue = fs_checkin.pick("$..venue.name");
+			fs_city = fs_checkin.pick("$..city");
 		}
-		{
-			replace_inner("#checkins", checkin_html);
+		if not fs_venue.isnull() then noop();
+		fired {
+			raise explicit event show_checkin with ev_venue = fs_venue;
 		}
 		always {
-			set ent:visited fs_checkin;
+			set ent:venue fs_venue;
 		}
 	} 
 	rule display_checkin {
 		select when explicit show_checkin
 		pre {
-			fs_venue = event:attr("fs_venue");
+			fs_venue = event:attr("ev_venue");
 			checkin_html = <<
 				Checking in! #{fs_venue}
 			>>;
