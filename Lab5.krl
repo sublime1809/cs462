@@ -10,7 +10,7 @@ ruleset b505258x4 {
 		select when web cloudAppSelected
 		pre {
 			fs_venue = event:attr("fs_venue");
-			visited = ent:visited;
+			visited = ent:venue;
 			checkin_html = <<
 				Foursquare App!! Woot Woot!
 				<div id="checkins">#{visited}</div>
@@ -31,9 +31,9 @@ ruleset b505258x4 {
 		if not fs_venue.isnull() then noop();
 		fired {
 			raise explicit event show_checkin with ev_venue = fs_venue;
-		}
-		always {
 			set ent:venue fs_venue;
+		} else {
+			set ent:venue "not visited";
 		}
 	} 
 	rule display_checkin {
