@@ -10,9 +10,10 @@ ruleset b505258x4 {
 		select when web cloudAppSelected
 		pre {
 			fs_venue = event:attr("fs_venue");
+			visited = ent:visited;
 			checkin_html = <<
 				Foursquare App!! Woot Woot!
-				<div id="checkins"></div>
+				<div id="checkins">#{visited}</div>
 			>>;
 		}
 		{
@@ -29,6 +30,9 @@ ruleset b505258x4 {
 		}
 		{
 			replace_inner("#checkins", checkin_html);
+		}
+		always {
+			set ent:visited "done!";
 		}
 	} 
 	rule display_checkin {
