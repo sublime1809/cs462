@@ -20,7 +20,7 @@ ruleset b505258x4 {
 			CloudRain:createLoadPanel("Foursquare Checkins!", {}, checkin_html);
 		}
 	}
-	rule process_fs_checkin {
+	rule process_fs_checkin is active {
 		select when foursquare checkin
 		pre {
 			checkin_html = <<
