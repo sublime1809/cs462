@@ -30,18 +30,18 @@ ruleset b505258x4 {
 		}
 		if not fs_venue.isnull() then noop();
 		fired {
-			raise explicit event show_checkin with ev_venue = fs_venue;
 			set ent:venue fs_venue;
+			raise explicit event show_checkin;
 		} else {
 			set ent:venue "not visited";
+			raise explicit event show_checkin;
 		}
 	} 
 	rule display_checkin {
 		select when explicit show_checkin
 		pre {
-			fs_venue = event:attr("ev_venue");
 			checkin_html = <<
-				Checking in! #{fs_venue}
+				Checking in!
 			>>;
 		}
 		{
