@@ -11,9 +11,11 @@ ruleset b505258x4 {
 		pre {
 			fs_venue = event:attr("fs_venue");
 			visited = ent:venue;
+			fs_checkin = ent:fs_info;
 			checkin_html = <<
 				Foursquare App!! Woot Woot!
 				<div id="checkins">#{visited}</div>
+				<div id="json">#{fs_checkin}</div>
 			>>;
 		}
 		{
@@ -30,6 +32,7 @@ ruleset b505258x4 {
 		}
 		if not fs_venue.isnull() then noop();
 		fired {
+			set ent:fs_info fs_checkin;
 			set ent:venue fs_venue;
 			raise explicit event show_checkin;
 		} else {
