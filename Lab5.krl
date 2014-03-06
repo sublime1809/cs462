@@ -12,7 +12,7 @@ ruleset b505258x4 {
 			fs_venue = ent:venue;
 			fs_city = ent:city;
 			fs_shout = ent:shout;
-			fs_createdAt = time:new(ent:createdAt);
+			fs_createdAt = ent:createdAt;
 			checkin_html = <<
 				Foursquare App!! Woot Woot!
 				<div id="checkins">
