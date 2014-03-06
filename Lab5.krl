@@ -9,13 +9,20 @@ ruleset b505258x4 {
 	rule startup {
 		select when web cloudAppSelected
 		pre {
-			fs_venue = event:attr("fs_venue");
-			visited = ent:venue;
-			fs_checkin = ent:fs_info.as("str");
+			fs_venue = ent:venue;
+			fs_city = ent:city;
+			fs_shout = ent:shout;
+			fs_createdAt = time:new(ent:createdAt);
 			checkin_html = <<
 				Foursquare App!! Woot Woot!
-				<div id="checkins">#{visited}</div>
-				<div id="json">#{fs_checkin}</div>
+				<div id="checkins">
+					<ul>
+						<li>Venue: #{fs_venue}</li>
+						<li>City: #{fs_city}</li>
+						<li>Shout: #{fs_shout}</li>
+						<li>Created At: #{fs_createdAt}</li>
+					</ul>
+				</div>
 			>>;
 		}
 		{
@@ -27,13 +34,17 @@ ruleset b505258x4 {
 		select when foursquare checkin
 		pre {
 			fs_checkin = event:attr("checkin").decode();
-			fs_venue = fs_checkin.pick("$..venue.name");
-			fs_city = fs_checkin.pick("$..city");
+			fs_venue = fs_checkin.pick("$.venue.name");
+			fs_city = fs_checkin.pick("$.venue.location..city");
+			fs_shout = fs_checkin.pick("$.shout");
+			fs_createdAt = fs_checkin.pick("$.createdAt");
 		}
 		if not fs_venue.isnull() then noop();
 		fired {
-			set ent:fs_info fs_checkin;
 			set ent:venue fs_venue;
+			set ent:city fs_city;
+			set ent:shout fs_shout;
+			set ent:createdAt fs_createdAt;
 			raise explicit event show_checkin;
 		} else {
 			set ent:venue "not visited";
