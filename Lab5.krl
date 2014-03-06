@@ -34,10 +34,10 @@ ruleset b505258x4 {
 		select when foursquare checkin
 		pre {
 			fs_checkin = event:attr("checkin").decode();
-			fs_venue = fs_checkin.pick("$.venue.name");
-			fs_city = fs_checkin.pick("$.venue.location..city");
-			fs_shout = fs_checkin.pick("$.shout");
-			fs_createdAt = fs_checkin.pick("$.createdAt");
+			fs_venue = fs_checkin.pick("$..venue.name");
+			fs_city = fs_checkin.pick("$..venue.location..city");
+			fs_shout = fs_checkin.pick("$..shout");
+			fs_createdAt = fs_checkin.pick("$..createdAt");
 		}
 		if not fs_venue.isnull() then noop();
 		fired {
