@@ -15,7 +15,7 @@ ruleset b505258x4 {
 			fs_shout = ent:shout;
 			fs_createdAt = ent:createdAt;
 			checkin_html = <<
-				Foursquare App!! Woot Woot!
+				Your Last Checkin:
 				<div id="checkins">
 					<ul>
 						<li>Venue: #{fs_venue}</li>
