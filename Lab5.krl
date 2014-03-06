@@ -20,7 +20,7 @@ ruleset b505258x4 {
 					<ul>
 						<li>Venue: #{fs_venue}</li>
 						<li>City: #{fs_city}, #{fs_state}</li>
-						<li>Shout: #{fs_shout}</li>
+						<li>Shout: "#{fs_shout}"</li>
 						<li>Created At: #{fs_createdAt}</li>
 					</ul>
 				</div>
