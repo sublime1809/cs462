@@ -45,21 +45,6 @@ ruleset b505258x4 {
 			set ent:city fs_city;
 			set ent:shout fs_shout;
 			set ent:createdAt fs_createdAt;
-			raise explicit event show_checkin;
-		} else {
-			set ent:venue "not visited";
-			raise explicit event show_checkin;
 		}
 	} 
-	rule display_checkin {
-		select when explicit show_checkin
-		pre {
-			checkin_html = <<
-				Checking in!
-			>>;
-		}
-		{
-			replace_inner("#checkins", checkin_html);
-		}
-	}
 }
