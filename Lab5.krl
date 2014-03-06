@@ -11,7 +11,7 @@ ruleset b505258x4 {
 		pre {
 			fs_venue = event:attr("fs_venue");
 			visited = ent:venue;
-			fs_checkin = ent:fs_info;
+			fs_checkin = ent:fs_info.as("str");
 			checkin_html = <<
 				Foursquare App!! Woot Woot!
 				<div id="checkins">#{visited}</div>
