@@ -11,6 +11,7 @@ ruleset b505258x4 {
 		pre {
 			fs_venue = ent:venue;
 			fs_city = ent:city;
+			fs_state = ent:state;
 			fs_shout = ent:shout;
 			fs_createdAt = ent:createdAt;
 			checkin_html = <<
@@ -18,7 +19,7 @@ ruleset b505258x4 {
 				<div id="checkins">
 					<ul>
 						<li>Venue: #{fs_venue}</li>
-						<li>City: #{fs_city}</li>
+						<li>City: #{fs_city}, #{fs_state}</li>
 						<li>Shout: #{fs_shout}</li>
 						<li>Created At: #{fs_createdAt}</li>
 					</ul>
@@ -36,6 +37,7 @@ ruleset b505258x4 {
 			fs_checkin = event:attr("checkin").decode();
 			fs_venue = fs_checkin.pick("$..venue.name");
 			fs_city = fs_checkin.pick("$..venue.location..city");
+			fs_state = fs_checkin.pick("$..venue.location..state");
 			fs_shout = fs_checkin.pick("$..shout");
 			fs_createdAt = fs_checkin.pick("$..createdAt");
 		}
@@ -43,6 +45,7 @@ ruleset b505258x4 {
 		fired {
 			set ent:venue fs_venue;
 			set ent:city fs_city;
+			set ent:state fs_state;
 			set ent:shout fs_shout;
 			set ent:createdAt fs_createdAt;
 		}
