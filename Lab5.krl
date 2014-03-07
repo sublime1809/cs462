@@ -40,6 +40,13 @@ ruleset b505258x4 {
 			fs_state = fs_checkin.pick("$..venue.location..state");
 			fs_shout = fs_checkin.pick("$..shout");
 			fs_createdAt = fs_checkin.pick("$..createdAt");
+			fs_map = {
+				"venue" : fs_venue,
+				"city": fs_city,
+				"state": fs_state,
+				"shout": fs_shout,
+				"createdAt": fs_createdAt
+			};
 		}
 		if not fs_venue.isnull() then noop();
 		fired {
@@ -48,6 +55,7 @@ ruleset b505258x4 {
 			set ent:state fs_state;
 			set ent:shout fs_shout;
 			set ent:createdAt fs_createdAt;
+			raise pds event new_location_data with key = "fs_checkin" and value = fs_map;
 		}
 	} 
 }
