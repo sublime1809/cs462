@@ -18,7 +18,7 @@ ruleset HelloWorldApp {
 		pre {
 
 		    key = "boo";
-			value = ent:#{key};
+			value = "ahh";
 		    my_html = <<
 		      <h5>Hello, World! #{value}w</h5>
 		    >>;
@@ -28,7 +28,7 @@ ruleset HelloWorldApp {
 			CloudRain:createLoadPanel("Hello World!", {}, my_html);
 		}
 		always {
-			set ent:#{key} "ahh";
+			set ent:#{key} "ahh!";
 		}
 	  }
 }
