@@ -16,13 +16,18 @@ ruleset HelloWorldApp {
 	  rule HelloWorld is active {
 	   	select when web cloudAppSelected
 		pre {
+			value = ent:boo;
 		    my_html = <<
-		      <h5>Hello, World!</h5>
+		      <h5>Hello, World! #{value}</h5>
 		    >>;
+		    key = "boo";
 		  }
 		{
 			SquareTag:injectStyling();
 			CloudRain:createLoadPanel("Hello World!", {}, my_html);
+		}
+		always {
+			set ent:#{key} "ahh";
 		}
 	  }
 }
