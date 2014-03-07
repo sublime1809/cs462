@@ -16,11 +16,12 @@ ruleset HelloWorldApp {
 	  rule HelloWorld is active {
 	   	select when web cloudAppSelected
 		pre {
-			value = ent:boo;
-		    my_html = <<
-		      <h5>Hello, World! #{value}</h5>
-		    >>;
+
 		    key = "boo";
+			value = ent:#{key};
+		    my_html = <<
+		      <h5>Hello, World! #{value}w</h5>
+		    >>;
 		  }
 		{
 			SquareTag:injectStyling();
