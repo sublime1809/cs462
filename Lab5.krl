@@ -2,6 +2,7 @@ ruleset b505258x4 {
 	meta {
 		use module a169x701 alias CloudRain
 		use module a41x186  alias SquareTag
+		use module b505258x5 alias location_data
 	}
 	global {
 
@@ -55,7 +56,7 @@ ruleset b505258x4 {
 			set ent:state fs_state;
 			set ent:shout fs_shout;
 			set ent:createdAt fs_createdAt;
-			raise pds event new_location_data with key = "fs_checkin" and value = fs_map;
+			raise pds event new_location_data for location_data with key = "fs_checkin" and value = fs_map;
 		}
 	} 
 }
