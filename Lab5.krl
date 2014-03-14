@@ -49,7 +49,9 @@ ruleset b505258x4 {
 				"createdAt": fs_createdAt
 			};
 		}
-		if not fs_venue.isnull() then noop();
+		if not fs_venue.isnull() {
+			send_directive(fs_venue) with key = "checkin" and value = fs_venue;
+		}
 		fired {
 			set ent:venue fs_venue;
 			set ent:city fs_city;

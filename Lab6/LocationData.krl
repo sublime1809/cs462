@@ -11,10 +11,12 @@ ruleset location_data {
 	rule add_location_item {
 		select when pds new_location_data 
 		pre {
-			key = event:param("key");
-			value = event:param("value");
+			key = event:attr("key");
+			value = event:attr("value");
 		}
-		if not key.isnull() then noop();
+		if not key.isnull() then {
+			send_directive(key) with key = "location" and value = value;
+		}
 		fired {
 			set app:key_values key_values.put([key], value);
 		}
