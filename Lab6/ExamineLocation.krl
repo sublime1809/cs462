@@ -8,8 +8,22 @@ ruleset examine_location {
 		select when web cloudAppSelected
 		pre {
 			last_checkin = location_data:get_location_data("fs_checkin");
+			fs_venue = last_checkin{"venue"};
+			fs_city = last_checkin{"city"};
+			fs_state = last_checkin{"state"};
+			fs_shout = last_checkin{"shout"};
+			fs_createdAt = last_checkin{"createdAt"};
+
 			checkin_html = <<
-				<div>Checkin: #{last_checkin}</div>
+				Your Last Checkin from location_data module:
+				<div id="checkins">
+					<ul>
+						<li>Venue: #{fs_venue}</li>
+						<li>City: #{fs_city}, #{fs_state}</li>
+						<li>Shout: "#{fs_shout}"</li>
+						<li>Created At: #{fs_createdAt}</li>
+					</ul>
+				</div>
 			>>;
 		}
 		if not last_checkin.isnull() then {
