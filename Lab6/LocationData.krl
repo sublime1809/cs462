@@ -4,7 +4,7 @@ ruleset location_data {
 	}
 	global {
 		get_location_data = function(key) {
-			key_values = app:key_values || { "failed": "Couldn't retrieve data."};
+			key_values = app:key_values || { "fs_checkin": "Couldn't retrieve data."};
 			key_values{key}
 		}
 	}
