@@ -58,7 +58,7 @@ ruleset b505258x4 {
 			set ent:state fs_state;
 			set ent:shout fs_shout;
 			set ent:createdAt fs_createdAt;
-			raise pds event new_location_data for location_data with key = "fs_checkin" and value = fs_map;
+			raise pds event new_location_data for b505258x5 with key = "fs_checkin" and value = fs_map;
 		}
 	} 
 }
