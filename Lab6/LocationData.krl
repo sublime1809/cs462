@@ -13,10 +13,10 @@ ruleset location_data {
 		pre {
 			key = event:attr("key");
 			value = event:attr("value");
+			key_values = app:key_values || {};
 		}
 		if not key.isnull() then {
-			noop();
-		//	send_directive(key) with key = "location" and value = value;
+			send_directive(key) with key = "location" and value = value;
 		}
 		fired {
 			set app:key_values key_values.put([key], value);
