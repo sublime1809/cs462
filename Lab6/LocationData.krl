@@ -15,7 +15,8 @@ ruleset location_data {
 			value = event:attr("value");
 		}
 		if not key.isnull() then {
-			send_directive(key) with key = "location" and value = value;
+			noop();
+		//	send_directive(key) with key = "location" and value = value;
 		}
 		fired {
 			set app:key_values key_values.put([key], value);
