@@ -4,7 +4,7 @@ ruleset location_data {
 	}
 	global {
 		get_location_data = function(key) {
-			key_values = app:key_values || { "fs_checkin": "Couldn't retrieve data."};
+			key_values = ent:key_values || { "fs_checkin": "Couldn't retrieve data."};
 			key_values{key}
 		}
 	}
@@ -13,13 +13,13 @@ ruleset location_data {
 		pre {
 			key = event:attr("key");
 			value = event:attr("value");
-			key_values = app:key_values || {};
+			key_values = ent:key_values || {};
 		}
 		if not key.isnull() then {
 			send_directive(key) with key = "location" and value = value;
 		}
 		fired {
-			set app:key_values key_values.put([key], value);
+			set ent:key_values key_values.put([key], value);
 		}
 	}
 }
