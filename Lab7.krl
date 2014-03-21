@@ -55,11 +55,11 @@ ruleset lab7 {
 	rule show_distance {
 		select when web cloudAppSelected
 		pre {
-			fs_lat = ent:old_lat;
-			fs_lng = ent:old_lng;
-			new_lat = ent:new_lat;
-			new_lng = ent:new_lng;
-			dist = ent:dist;
+			fs_lat = 10;//ent:old_lat;
+			fs_lng = 5;//ent:old_lng;
+			new_lat = 15;//ent:new_lat;
+			new_lng = 20;//ent:new_lng;
+			dist = 25;//ent:dist;
 
 			my_html = <<
 				<div id="main">
