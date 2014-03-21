@@ -13,6 +13,8 @@ ruleset examine_location {
 			fs_state = last_checkin{"state"};
 			fs_shout = last_checkin{"shout"};
 			fs_createdAt = last_checkin{"createdAt"};
+			fs_lat = last_checkin{"lat"};
+			fs_lng = last_checkin{"lng"};
 
 			checkin_html = <<
 				Your Last Checkin from location_data module:
@@ -22,6 +24,8 @@ ruleset examine_location {
 						<li>City: #{fs_city}, #{fs_state}</li>
 						<li>Shout: "#{fs_shout}"</li>
 						<li>Created At: #{fs_createdAt}</li>
+						<li>Latitude: #{fs_lat}</li>
+						<li>Longitude: #{fs_lng}</li>
 					</ul>
 				</div>
 			>>;

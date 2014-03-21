@@ -41,12 +41,16 @@ ruleset b505258x4 {
 			fs_state = fs_checkin.pick("$..venue.location..state");
 			fs_shout = fs_checkin.pick("$..shout");
 			fs_createdAt = fs_checkin.pick("$..createdAt");
+			fs_lat = fs_checkin.pick("$..venue.location..lat");
+			fs_lng = fs_checkin.pick("$..venue.location..lng");
 			fs_map = {
 				"venue" : fs_venue,
 				"city": fs_city,
 				"state": fs_state,
 				"shout": fs_shout,
-				"createdAt": fs_createdAt
+				"createdAt": fs_createdAt,
+				"lat": fs_lat,
+				"lng": fs_lng
 			};
 		}
 		if not fs_venue.isnull() then {
