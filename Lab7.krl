@@ -65,6 +65,7 @@ ruleset lab7 {
 			new_lat = ent:new_lat;
 			new_lng = ent:new_lng;
 			dist = ent:dist;
+			state = ent:state;
 
 			my_html = <<
 				<div id="main">
@@ -73,6 +74,7 @@ ruleset lab7 {
 					<p>New Lat: #{new_lat}</p>
 					<p>New Lng: #{new_lng}</p>
 					<p>Dist: #{dist}</p>
+					<p>State: #{state}</p>
 				</div>
 			>>;
 		}
