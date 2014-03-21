@@ -46,9 +46,15 @@ ruleset lab7 {
 			set ent:new_lat new_lat;
 			set ent:new_lng new_lng;
 			set ent:dist miles;
+			set ent:state "near";
 		}
 		else {
-			// raise explicit event location_far ;
+			set ent:old_lat fs_lat;
+			set ent:old_lng fs_lng;
+			set ent:new_lat new_lat;
+			set ent:new_lng new_lng;
+			set ent:dist miles;
+			set ent:state "far";
 		}
 	}
 	rule show_distance {
