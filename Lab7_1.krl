@@ -11,18 +11,46 @@ ruleset lab7_1 {
 		select when location nearby 
 		pre {
 			dist = event:attr("dist");
+			msg = dist+" mi";
 		}
 		{
-			twilio:send_sms("+12086956442", "+12084953923", dist+" mi");
+			twilio:send_sms("+12086956442", "+12084953923", msg);
+		}
+		always {
+			set ent:dist dist;
+			set ent:msg msg;
 		}
 	}
 	rule listen_far { 
 		select when location far 
 		pre {
 			dist = event:attr("dist");
+			msg = "far: "+dist+" mi";
 		}
 		{
-			twilio:send_sms("+12086956442", "+12084953923", "far: "+dist+" mi");
+			twilio:send_sms("+12086956442", "+12084953923", msg);
+		}
+		always {
+			set ent:dist dist;
+			set ent:msg msg;
+		}
+	}
+	rule show_text {
+		select when web cloudAppSelected
+		pre {
+			dist = ent:dist;
+			msg = ent:msg;
+
+			my_html = <<
+				<div id="main">
+					<p>Dist: #{dist}</p>
+					<p>Msg: #{msg}</p>
+				</div>
+			>>;
+		}
+		{
+			SquareTag:inject_styling();
+			CloudRain:createLoadPanel("Text sent", {}, my_html);
 		}
 	}
 }
