@@ -39,14 +39,15 @@ ruleset lab7 {
 		if (miles < 5) then {
 			noop();
 		}
-		fired {
-			// raise explicit event location_near ;
+		fired {	
 			set ent:old_lat fs_lat;
 			set ent:old_lng fs_lng;
 			set ent:new_lat new_lat;
 			set ent:new_lng new_lng;
 			set ent:dist miles;
 			set ent:state "near";
+
+			raise location event nearby for b505258x8 with dist = miles;
 		}
 		else {
 			set ent:old_lat fs_lat;
@@ -55,6 +56,8 @@ ruleset lab7 {
 			set ent:new_lng new_lng;
 			set ent:dist miles;
 			set ent:state "far";
+
+			raise location event far for b505258x8 with dist = miles;
 		}
 	}
 	rule show_distance {

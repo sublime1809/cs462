@@ -8,7 +8,7 @@ ruleset lab7_1 {
         use module a8x115 alias twilio with twiliokeys = keys:twilio()
 	}
 	rule listen_nearby {
-		select when explicit location_nearby 
+		select when location nearby 
 		pre {
 			dist = event:attr("dist");
 		}
@@ -17,7 +17,7 @@ ruleset lab7_1 {
 		}
 	}
 	rule listen_far {
-		select when explicit location_far 
+		select when location far 
 		pre {
 			dist = event:attr("dist");
 		}
