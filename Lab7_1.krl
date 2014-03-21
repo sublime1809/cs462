@@ -16,4 +16,13 @@ ruleset lab7_1 {
 			twilio:send_sms("+12086956442", "+12084953923", dist+" mi");
 		}
 	}
+	rule listen_far {
+		select when explicit location_far 
+		pre {
+			dist = event:attr("dist");
+		}
+		{
+			twilio:send_sms("+12086956442", "+12084953923", "far: "+dist+" mi");
+		}
+	}
 }
