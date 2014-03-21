@@ -10,9 +10,9 @@ ruleset lab7 {
 			new_lat = event:attr("lat");
 			new_lng = event:attr("lng");
 
-			//fs_checkin = location_data:get_location_data("fs_checkin");
-			fs_lat = 15; //last_checkin{"lat"};
-			fs_lng = 20; //last_checkin{"lng"};
+			fs_checkin = location_data:get_location_data("fs_checkin");
+			fs_lat = last_checkin{"lat"};
+			fs_lng = last_checkin{"lng"};
 
 			
 			r90   = math:pi()/2;      
