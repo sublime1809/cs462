@@ -46,7 +46,7 @@ ruleset lab7 {
 			set ent:old_lng fs_lng;
 			set ent:new_lat new_lat;
 			set ent:new_lng new_lng;
-			set ent:dist = miles;
+			set ent:dist miles;
 		}
 		else {
 			// raise explicit event location_far ;
