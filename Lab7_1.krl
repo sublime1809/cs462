@@ -4,7 +4,8 @@ ruleset lab7_1 {
 			"account_sid" : "AC7aee905d1042728ef7816b9199586df7",
             "auth_token"  : "5886d8d3279d8d945c2db6c4a1d656d4"
         }
-         
+        use module a169x701 alias CloudRain
+		use module a41x186  alias SquareTag
         use module a8x115 alias twilio with twiliokeys = keys:twilio()
 	}
 	rule listen_nearby {
