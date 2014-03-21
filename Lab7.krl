@@ -8,12 +8,12 @@ ruleset lab7 {
 		select when location new_current
 		pre {
 			new_checkin = event:attr("checkin").decode();
-			new_lat = new_checkin.pick("$..venue.location..lat");
-			new_lng = new_checkin.pick("$..venue.location..lng");
+			new_lat = 10; //new_checkin.pick("$..venue.location..lat");
+			new_lng = 5; //new_checkin.pick("$..venue.location..lng");
 
 			fs_checkin = location_data:get_location_data("fs_checkin");
-			fs_lat = last_checkin{"lat"};
-			fs_lng = last_checkin{"lng"};
+			fs_lat = 15; //last_checkin{"lat"};
+			fs_lng = 20; //last_checkin{"lng"};
 
 			
 			r90   = math:pi()/2;      
