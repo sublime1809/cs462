@@ -4,7 +4,7 @@ ruleset lab7 {
 		use module a41x186  alias SquareTag
 		use module b505258x5 alias location_data
 	}
-	rule nearby {
+	/*rule nearby {
 		select when location new_current
 		pre {
 			new_checkin = event:attr("checkin").decode();
@@ -51,7 +51,7 @@ ruleset lab7 {
 		else {
 			// raise explicit event location_far ;
 		}
-	}
+	}*/
 	rule show_distance {
 		select when web cloudAppSelected
 		pre {
