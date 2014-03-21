@@ -47,7 +47,7 @@ ruleset lab7 {
 			set ent:dist miles;
 			set ent:state "near";
 
-			raise location event nearby for b505258x8 with dist = miles;
+			raise explicit event location_nearby for b505258x8 with dist = miles;
 		}
 		else {
 			set ent:old_lat fs_lat;
@@ -57,7 +57,7 @@ ruleset lab7 {
 			set ent:dist miles;
 			set ent:state "far";
 
-			raise location event far for b505258x8 with dist = miles;
+			raise explicit event location_far for b505258x8 with dist = miles;
 		}
 	}
 	rule show_distance {
