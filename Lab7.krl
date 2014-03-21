@@ -7,11 +7,11 @@ ruleset lab7 {
 	rule nearby is active {
 		select when location new_current
 		pre {
-			new_checkin = event:attr("checkin").decode();
+			//new_checkin = event:attr("checkin").decode();
 			new_lat = 10; //new_checkin.pick("$..venue.location..lat");
 			new_lng = 5; //new_checkin.pick("$..venue.location..lng");
 
-			fs_checkin = location_data:get_location_data("fs_checkin");
+			//fs_checkin = location_data:get_location_data("fs_checkin");
 			fs_lat = 15; //last_checkin{"lat"};
 			fs_lng = 20; //last_checkin{"lng"};
 
@@ -37,7 +37,7 @@ ruleset lab7 {
 			dE = math:great_circle_distance(rlnga,r90 - rlata, rlngb,r90 - rlatb, rEk);
 			miles = dE*(0.621371);
 		}
-		if(miles < 5) then {
+		if (miles < 5) then {
 			noop();
 		}
 		fired {
