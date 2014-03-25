@@ -5,7 +5,11 @@ ruleset b505258x4 {
 		use module b505258x5 alias location_data
 	}
 	global {
-
+		subscription_maps = [
+			{
+				"cid": "5035991E-B433-11E3-A14D-FA8AE71C24E1"
+			}
+		];
 	}
 	rule startup {
 		select when web cloudAppSelected
@@ -65,4 +69,36 @@ ruleset b505258x4 {
 			raise pds event new_location_data for b505258x5 with key = "fs_checkin" and value = fs_map;
 		}
 	} 
+	rule fire_channels {
+		select when foursquare checkin
+		foreach subscription_maps setting (m)
+		pre {
+			fs_checkin = event:attr("checkin").decode();
+			fs_venue = fs_checkin.pick("$..venue.name");
+			fs_city = fs_checkin.pick("$..venue.location..city");
+			fs_state = fs_checkin.pick("$..venue.location..state");
+			fs_shout = fs_checkin.pick("$..shout");
+			fs_createdAt = fs_checkin.pick("$..createdAt");
+			fs_lat = fs_checkin.pick("$..venue.location..lat");
+			fs_lng = fs_checkin.pick("$..venue.location..lng");
+			fs_map = {
+				"venue" : fs_venue,
+				"city": fs_city,
+				"state": fs_state,
+				"shout": fs_shout,
+				"createdAt": fs_createdAt,
+				"lat": fs_lat,
+				"lng": fs_lng
+			};
+		}
+		event:send(m, "location", "notification") with attrs = {
+			"venue" : fs_venue,
+			"city": fs_city,
+			"state": fs_state,
+			"shout": fs_shout,
+			"createdAt": fs_createdAt,
+			"lat": fs_lat,
+			"lng": fs_lng
+		};
+	}
 }
