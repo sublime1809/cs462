@@ -8,6 +8,9 @@ ruleset b505258x4 {
 		subscription_maps = [
 			{
 				"cid": "5035991E-B433-11E3-A14D-FA8AE71C24E1"
+			}, 
+			{
+				"cid": "E4F29BA0-B439-11E3-99B1-5FD087B7806A"
 			}
 		];
 	}
